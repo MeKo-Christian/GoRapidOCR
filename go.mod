@@ -1,3 +1,3 @@
-module github.com/doraemonkeys/paddleocr
+module github.com/topascend/GoRapidOcr
 
 go 1.21.5

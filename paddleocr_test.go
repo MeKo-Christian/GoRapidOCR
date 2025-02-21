@@ -1,4 +1,4 @@
-package paddleocr
+package GoRapidOcr
 
 import (
 	"testing"
