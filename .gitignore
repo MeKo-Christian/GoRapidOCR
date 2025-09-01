@@ -13,12 +13,98 @@
 
 # Output of the go coverage tool, specifically when used with LiteIDE
 *.out
+*.html
+
+# Go coverage files
+coverage.txt
+coverage.html
+*.cover
 
 # Dependency directories (remove the comment below to include it)
 # vendor/
 
 # Go workspace file
 go.work
+go.work.sum
 
+# Build output
+bin/
+dist/
+build/
+*.tar.gz
+*.zip
+
+# Cache directories
+.gocache/
+.cache/
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE and Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.classpath
+.settings/
+
+# Temporary files
+*.tmp
+*.temp
+*.log
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Example and test directories
 example/
 RapidOcr-json/
+testdata/
+
+# Air live reloading
+tmp/
+
+# GoReleaser
+dist/
+
+# Docker
+.dockerignore
+
+# CI/CD
+.github/workflows/*.log
+
+# Local development
+debug
+debug.test
+*.pprof
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+
+# OCR model files and data
+models/
+*.onnx
+*.txt
+*.bin
+
+# Screenshots and test images
+screenshots/
+test_images/
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.bmp

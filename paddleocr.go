@@ -101,8 +101,8 @@ type Ppocr struct {
 	cmdStdout io.ReadCloser
 	cmdStdin  io.WriteCloser
 	cmd       *exec.Cmd
-	// 无缓冲同步信号通道，close()中接收，Run()中发送。
-	// Run()退出必须有对应close方法的调用
+	// Unbuffered sync channel, received in close(), sent in Run().
+	// Run() exit must have corresponding close() method call
 	runGoroutineExitedChan chan struct{}
 	// startTime time.Time
 }
@@ -225,7 +225,7 @@ func (p *Ppocr) close() (err error) {
 	default:
 	}
 	defer func() {
-		// 可能的情况：Run刚退出，p.exited还没设置为true
+		// Possible situation: Run just exited, p.exited not yet set to true
 		if r := recover(); r != nil {
 			err = fmt.Errorf("close panic: %v", r)
 		}
