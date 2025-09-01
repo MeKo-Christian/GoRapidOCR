@@ -1,3 +1,3 @@
-module github.com/topascend/GoRapidOcr
+module github.com/MeKo-Christian/GoRapidOCR
 
-go 1.21.5
+go 1.22.0

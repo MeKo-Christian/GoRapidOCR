@@ -1,4 +1,4 @@
-package GoRapidOcr
+package GoRapidOCR
 
 import (
 	"bytes"
@@ -16,21 +16,21 @@ import (
 )
 
 type OcrArgs struct {
-	EnsureAscii    string `ocrArg:"--ensureAscii"`    // 启用(1)/禁用(0) ASCII转义输出	  默认值: 0
-	Models         string `ocrArg:"--models"`         // 模型目录地址，可绝对or相对路径	  默认值: "models"
-	Det            string `ocrArg:"--det"`            // det库名称	默认值: "ch_PP-OCRv3_det_infer.onnx"
-	Cls            string `ocrArg:"--cls"`            // cls库名称	默认值: "ch_ppocr_mobile_v2.0_cls_infer.onnx"
-	Rec            string `ocrArg:"--rec"`            // rec库名称	默认值: "ch_PP-OCRv3_rec_infer.onnx"
-	Keys           string `ocrArg:"--keys"`           // rec字典名称	默认值: "ppocr_keys_v1.txt"
-	DoAngle        string `ocrArg:"--doAngle"`        // 启用(1)/禁用(0) 文字方向检测	默认值: 1
-	MostAngle      string `ocrArg:"--mostAngle"`      // 启用(1)/禁用(0) 角度投票	默认值: 1
-	NumThread      string `ocrArg:"--numThread"`      // 线程数	默认值: 4
-	Padding        string `ocrArg:"--padding"`        // 预处理白边宽度，可优化窄边图片识别率	默认值: 50
-	MaxSideLen     string `ocrArg:"--maxSideLen"`     // 图片长边缩小值，可提高大图速度	默认值: 1024
-	BoxScoreThresh string `ocrArg:"--boxScoreThresh"` // 文字框置信度门限值	默认值: 0.5
-	BoxThresh      string `ocrArg:"--boxThresh"`      // 默认值: 0.3
-	UnClipRatio    string `ocrArg:"--unClipRatio"`    // 单个文字框大小倍率	默认值: 1.6
-	ImagePath      string `ocrArg:"--image_path"`     // 初始图片路径	默认值: ""
+	EnsureAscii    string `ocrArg:"--ensureAscii"`    // Enable (1)/Disable (0) ASCII escape output	Default: 0
+	Models         string `ocrArg:"--models"`         // Model directory path, absolute or relative	Default: "models"
+	Det            string `ocrArg:"--det"`            // Detection model name	Default: "ch_PP-OCRv3_det_infer.onnx"
+	Cls            string `ocrArg:"--cls"`            // Classification model name	Default: "ch_ppocr_mobile_v2.0_cls_infer.onnx"
+	Rec            string `ocrArg:"--rec"`            // Recognition model name	Default: "ch_PP-OCRv3_rec_infer.onnx"
+	Keys           string `ocrArg:"--keys"`           // Recognition dictionary name	Default: "ppocr_keys_v1.txt"
+	DoAngle        string `ocrArg:"--doAngle"`        // Enable (1)/Disable (0) text direction detection	Default: 1
+	MostAngle      string `ocrArg:"--mostAngle"`      // Enable (1)/Disable (0) angle voting	Default: 1
+	NumThread      string `ocrArg:"--numThread"`      // Number of threads	Default: 4
+	Padding        string `ocrArg:"--padding"`        // Preprocessing border width, optimizes narrow image recognition	Default: 50
+	MaxSideLen     string `ocrArg:"--maxSideLen"`     // Image long side shrink value, improves large image speed	Default: 1024
+	BoxScoreThresh string `ocrArg:"--boxScoreThresh"` // Text box confidence threshold	Default: 0.5
+	BoxThresh      string `ocrArg:"--boxThresh"`      // Default: 0.3
+	UnClipRatio    string `ocrArg:"--unClipRatio"`    // Single text box size multiplier	Default: 1.6
+	ImagePath      string `ocrArg:"--image_path"`     // Initial image path	Default: ""
 }
 
 const clipboardImagePath = `clipboard`
@@ -136,7 +136,7 @@ func NewPpocr(exePath string, args OcrArgs) (*Ppocr, error) {
 	return p, err
 }
 
-// 加锁调用，发生错误需要close
+// Locked call, need to close on error
 func (p *Ppocr) initPpocr(exePath string, args OcrArgs) error {
 	var cmdSlash string
 	if runtime.GOOS == "windows" {
@@ -249,7 +249,7 @@ func (p *Ppocr) close() (err error) {
 	return nil
 }
 
-// 定时重启进程减少内存占用(ocr程序有内存泄漏)
+// Timed restart process to reduce memory usage (OCR program has memory leak)
 func (p *Ppocr) restartTimer() {
 	// ticker := time.NewTicker(10 * time.Second)
 	ticker := time.NewTicker(20 * time.Minute)

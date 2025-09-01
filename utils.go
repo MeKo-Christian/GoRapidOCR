@@ -1,8 +1,8 @@
-package GoRapidOcr
+package GoRapidOCR
 
 import "os"
 
-// 文件是否存在
+// Check if file exists
 func fileIsExist(path string) bool {
 	f, err := os.Stat(path)
 	if err != nil {
